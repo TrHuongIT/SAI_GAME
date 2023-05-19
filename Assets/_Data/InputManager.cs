@@ -5,12 +5,14 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private static InputManager instance;
-
     public static InputManager GetInstance { get => instance; }
 
     [SerializeField] private Vector3 mouseWorldPos;
-
     public Vector3 MouseWorldPos { get => mouseWorldPos; }
+
+    private float onFiring;
+    public float OnFiring { get => onFiring;}
+
 
     private void Awake()
     {
@@ -19,10 +21,14 @@ public class InputManager : MonoBehaviour
         instance = this;
     }
 
+    private void Update()
+    {
+        onFiring = Input.GetAxis("Fire1");
+    }
+
     private void FixedUpdate()
     {
         GetMousePos();
-
     }
 
     protected virtual void GetMousePos()
